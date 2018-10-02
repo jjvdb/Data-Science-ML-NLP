@@ -77,10 +77,10 @@ class Visualize:
                 # check if the plot should be 2D or 3D - declare a pandas dataframe of the T-SNE reduced-dimensionality data accordingly
                 if num_plot_components == 2:
                     # declare 2D pandas dataframe
-                    plot_Data = pd.DataFrame(X_tsne, columns = ['principal component 1', 'principal component 2'])
+                    plot_Data = pd.DataFrame(X_tsne, columns = ['Principal Component 1', 'Principal Component 2'])
                 else:
                     # declare 3D pandas dataframe
-                    plot_Data = pd.DataFrame(X_tsne, columns = ['principal component 1', 'principal component 2', 'principal component 3'])
+                    plot_Data = pd.DataFrame(X_tsne, columns = ['Principal Component 1', 'Principal Component 2', 'Principal Component 3'])
             else:
                 # raise error
                 raise ValueError("The variable: num_plot_components must be equal to either 2 or 3")
@@ -131,10 +131,10 @@ class Visualize:
                 # check if the plot should be 2D or 3D - declare a pandas dataframe of the T-SNE reduced-dimensionality data accordingly
                 if num_plot_components == 2:
                     # declare 2D pandas dataframe
-                    plot_Data = pd.DataFrame(X_tsne, columns = ['principal component 1', 'principal component 2'])
+                    plot_Data = pd.DataFrame(X_tsne, columns = ['Principal Component 1', 'Principal Component 2'])
                 else:
                     # declare 3D pandas dataframe
-                    plot_Data = pd.DataFrame(X_tsne, columns = ['principal component 1', 'principal component 2', 'principal component 3'])
+                    plot_Data = pd.DataFrame(X_tsne, columns = ['Principal Component 1', 'Principal Component 2', 'Principal Component 3'])
             else:
                 # raise error
                 raise ValueError("The variable: num_plot_components must be equal to either 2 or 3")
@@ -152,21 +152,18 @@ class Visualize:
         Documentation: https://matplotlib.org/index.html
         
         Variables:
-        principalDf: a 2D pandas dataframe with integer values, and two columns: 'principal component 1' and 'principal component 2'.
+        principalDf: a 2D pandas dataframe with integer values, and two columns: 'Principal Component 1' and 'Principal Component 2'.
         """
+        
+        # import the required Python packages
+        from pandas import DataFrame
+        import matplotlib.pyplot as plt
         
         # declare interactive matplotlib notebook
         %matplotlib notebook
         
-        # declare 2D graph object
-        graph2d = plt.figure().gca(projection='2d')
-        
-        # set labels of the graph axes
-        graph2d.set_xlabel('Principal Component 1')
-        graph2d.set_ylabel('Principal Component 2')
-        
-        # plot the dataframe values on the 2D graph
-        graph2d.scatter(df['principal component 1'],df['principal component 2'])
+        # create a 2D plot of the pandas dataframe
+        principalDf.plot(kind = 'scatter', x = 'Principal Component 1', y = 'Principal Component 2', grid = True)
         
         return;
     
@@ -177,8 +174,13 @@ class Visualize:
         Documentation: https://matplotlib.org/index.html
         
         Variables:
-        principalDf: a 3D pandas dataframe with integer values, and two columns: 'principal component 1', 'principal component 2' and 'principal component 3'.
+        principalDf: a 3D pandas dataframe with integer values, and two columns: 'Principal Component 1', 'Principal Component 2' and 'Principal Component 3'.
         """
+        
+        # import the required Python packages
+        from pandas import DataFrame
+        import matplotlib.pyplot as plt
+        from mpl_toolkits.mplot3d import Axes3D
         
         # declare interactive matplotlib notebook
         %matplotlib notebook
@@ -192,6 +194,6 @@ class Visualize:
         graph3d.set_zlabel('Principal Component 3')
         
         # plot the dataframe values on the 3D graph
-        graph3d.scatter(df['principal component 1'],df['principal component 2'],df['principal component 3'])
+        graph3d.scatter(principalDf['Principal Component 1'],principalDf['Principal Component 2'],principalDf['Principal Component 3'])
         
         return;
